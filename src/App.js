@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // HashRouter 带#的路由器
-
 import './App.css';
 import Login from './views/login/login';
 import Admin from './views/admin/admin';
