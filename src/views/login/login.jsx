@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import './login.less'
 import imgMap from './images/map.png'
-import { Form, Icon, Input, Button } from 'antd'
+import { Form, Icon, Input, Button, message } from 'antd'
 import { login } from '../../../src/api'
+import memoryUtils from '../../utils/memoryUtils'
+import storageUtils from '../../utils/storageUtils'
 
 const Item  = Form.Item // 不能写在import 之前
 /**
@@ -19,7 +22,13 @@ class Login extends Component {
     form.validateFields(async (err, values) => {
       if (!err) {
         const { data } = await login(values)
-        console.log(data)
+        // console.log(data)
+        storageUtils.setUser(data) // 保存在local中
+        memoryUtils.user = data; // 保存在内存中 admin第一次加载时从内存中取user
+        message.success('登录成功', 4)
+
+        // replace() 不需要返回； push()可以返回； goback()返回上一级；
+        this.props.history.replace('/')
       }
     });
   }
@@ -35,6 +44,12 @@ class Login extends Component {
     }
   }
   render() {
+    // 判断用户是否登录，如果已经登录，跳转到管理界面
+    const user = memoryUtils.user
+    if(user && user.username) {
+      // this.props.history.replace('/')
+      return <Redirect to="/" />
+    }
     const form = this.props.form // 得到具有强大功能的的form对象
     const { getFieldDecorator } = form
     return (
