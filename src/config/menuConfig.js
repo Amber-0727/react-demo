@@ -8,7 +8,7 @@ const menuList = [
     title: '首页'
   },
   {
-    key: 'products',
+    key: '/products',
     icon: 'mail',
     title: '商品',
     children: [

@@ -1,5 +1,5 @@
-let Mock = require('mockjs')
-let Random = Mock.Random
+// let Mock = require('mockjs')
+// let Random = Mock.Random
 module.exports = function() {
   let data = {login:{}}
   // data.login.username = 'admin'

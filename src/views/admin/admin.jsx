@@ -39,6 +39,7 @@ export default class Admin extends Component {
               <Route path="/product" component={Product} />
               <Route path="/role" component={Role} />
               <Route path="/user" component={User} />
+              <Redirect to="/home"/>
             </Switch>
           </Content>
           <Footer style={{color:"#999",textAlign: "center"}}>亲亲，为减少开发大大的bug数量，这边建议您使用谷歌浏览器呢～
